@@ -1,11 +1,11 @@
-local success, json = pcall(require, "json")
-if not fs.exists("json.lua") then
+-- Install Opus OS
+
+local jsonsuccess, json = pcall(require, "json")
+if not jsonsuccess then
     shell.run("wget https://raw.githubusercontent.com/rxi/json.lua/bee7ee3431133009a97257bde73da8a34e53c15c/json.lua json.lua")
-     -- This JSON library seems to work extremely well
 end
 
-local json = require("json")
-
+json = jsonsuccess and json or require("json")
 
 term.clear()
 term.setCursorPos(1,1)
@@ -30,5 +30,25 @@ for filename, source in pairs(opus.sources) do
     handle.write(source)
     handle.close()
 end
-print("Done! Rebooting...")
-os.reboot()
+
+print("Cleaning up...")
+if not jsonsuccess then
+    fs.delete("json.lua")
+end
+
+print("Done! Rebooting in 3 seconds (press Enter key to stop)...")
+local stopped = false
+parallel.waitForAny(
+    function() 
+        sleep(3) 
+    end, 
+    function() 
+        read() 
+        stopped = true
+    end
+)
+
+print("Rebooting...")
+if not stopped then
+    os.reboot()
+end
