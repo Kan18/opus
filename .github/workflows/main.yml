@@ -28,13 +28,13 @@ jobs:
         python-version: '3.x'
 
     - name: Build JSON
-      run: python build.py
+      run: python install/build.py
 
     - name: Create version file
       run: |
         echo `date` > .opus_version
         git log >> .opus_version
-        
+
     - name: Commit updated files
       uses: alexesprit/action-update-file@main
       with:
@@ -42,5 +42,5 @@ jobs:
         file-path: |
           .opus_version
           install/opus.json
-        commit-msg: Update version date
+        commit-msg: Update version date and build JSON
         github-token: ${{ secrets.GITHUB_TOKEN }}
