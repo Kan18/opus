@@ -1,3 +1,4 @@
+local success, json = pcall(require, "json")
 if not fs.exists("json.lua") then
     shell.run("wget https://raw.githubusercontent.com/rxi/json.lua/bee7ee3431133009a97257bde73da8a34e53c15c/json.lua json.lua")
      -- This JSON library seems to work extremely well

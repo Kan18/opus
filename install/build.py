@@ -24,6 +24,5 @@ for root, directories, files in os.walk("sys"):
         addFileToSources(os.path.join(root, file))
 
 
-with open("opus.json", "w") as fileHandle:
+with open("install/opus.json", "w") as fileHandle:
     fileHandle.write(json.dumps({"directories": directorieslist, "sources": sources}))
-
