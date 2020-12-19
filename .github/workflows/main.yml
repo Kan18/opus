@@ -22,15 +22,25 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Build JSON
+      run: python build.py
+
     - name: Create version file
       run: |
         echo `date` > .opus_version
         git log >> .opus_version
-
-    - name: Commit version file
+        
+    - name: Commit updated files
       uses: alexesprit/action-update-file@main
       with:
         branch: 'develop-1.8'
-        file-path: .opus_version
+        file-path: |
+          .opus_version
+          install/opus.json
         commit-msg: Update version date
         github-token: ${{ secrets.GITHUB_TOKEN }}
