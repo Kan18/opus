@@ -48,7 +48,7 @@ parallel.waitForAny(
     end
 )
 
-print("Rebooting...")
 if not stopped then
+    print("Rebooting...")
     os.reboot()
 end
