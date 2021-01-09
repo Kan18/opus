@@ -1,6 +1,6 @@
-Sat Dec 19 18:15:47 UTC 2020
-commit 73a41c04a7f472db95e8a5738562b30dc895f986
-Author: Kan18 <24967425+Kan18@users.noreply.github.com>
-Date:   Sat Dec 19 13:15:21 2020 -0500
+Thu Dec 31 02:50:06 UTC 2020
+commit 2ff4ee56701a1c238f3fda52fd7764efa90559f4
+Author: Luca <luca@acul.me>
+Date:   Thu Dec 31 03:49:51 2020 +0100
 
-    Merge branch 'develop-1.8' of github.com:Kan18/opus into develop-1.8
+    fix: boolean value false is now correctly displayed in Lua.lua (#51)
